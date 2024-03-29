@@ -20,7 +20,7 @@ services:
       context: ./frontend
       dockerfile: dockerfile
     command: > 
-      sh -c "npm install && npm run dev"
+      sh -c "npm run dev"
     volumes: 
       - ./frontend:/app
     ports:
