@@ -2,7 +2,7 @@ version: '3.8'
 services:
   backend:
     build:
-      context: ./backend/
+      context: ./backend
       dockerfile: dockerfile
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -17,10 +17,10 @@ services:
 
   frontend:
     build:
-      context: ./frontend/
+      context: ./frontend
       dockerfile: dockerfile
     command: > 
-      npm start
+      sh -c "npm install && npm start"
     volumes: 
       - ./frontend:/app
     ports:
