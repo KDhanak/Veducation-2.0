@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "oh-vue-icons": "^1.0.0-rc3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "three": "^0.163.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {

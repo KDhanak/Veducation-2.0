@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     host: true, // For docker to to access frontend.
-    port: 3000 // To host the frontend on port 3000 instead of default.
+    port: 3000, // To host the frontend on port 3000 instead of default.
+    watch: {
+      usePolling:  true,
+    }
   }
 })
