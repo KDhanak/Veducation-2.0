@@ -6,6 +6,9 @@ export default {
             colors: {
                 bgGrey: "#242424",
             },
+            spacing: {
+                128: "32rem",
+            },
         },
     },
     plugins: [],
