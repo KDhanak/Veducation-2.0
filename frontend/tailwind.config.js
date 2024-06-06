@@ -5,9 +5,13 @@ export default {
         extend: {
             colors: {
                 bgGrey: "#242424",
+                bgSaffron: "rgba(255, 153, 51, 0.5)",
             },
             spacing: {
                 128: "32rem",
+                156: "39rem",
+                172: "45rem",
+                85: "355px",
             },
         },
     },
