@@ -1,36 +1,3 @@
-<script setup lang="ts">
-import {ref, onMounted} from "vue";
-import veducationLogo from "../assets/VEDUCATION (1).png"
-import profileImage from "../assets/Profile_Image.jpg"
-
-const dropDownVisible = ref(false);
-const dropDownVisibleMore = ref(false);
-
-const toggleDropDown = (dropDownId: string) => {
-  if(dropDownId === "profileMenu"){
-    dropDownVisible.value = !dropDownVisible.value;
-  } else if (dropDownId === "moreMenu") {
-    dropDownVisibleMore.value = !dropDownVisibleMore.value;
-  }
-}
-
-onMounted(() => {
-document.addEventListener('click', (event) => {
-  const userMenuButton = document.getElementById('user-menu-button');
-  const userDropDown = document.getElementById('user-dropdown');
-  const subMenuButton = document.getElementById('submenu-button');
-  const subMenuDropDown = document.getElementById('submenu-dropdown');
-
-  if (userMenuButton && userDropDown && !userMenuButton.contains(event.target as Node) && !userDropDown.contains(event.target as Node)) {
-    dropDownVisible.value = false;
-    }
-  if (subMenuButton && subMenuDropDown && !subMenuButton.contains(event.target as Node) && !subMenuDropDown.contains(event.target as Node)) {
-    dropDownVisibleMore.value = false;
-    }
-  });
-});
-</script>
-
 <template>
 <nav class=" bg-bgGrey border-gray-200">
     <div class="flex max-w-full flex-wrap items-center p-4">
@@ -137,4 +104,36 @@ document.addEventListener('click', (event) => {
   </nav>
 </template>
 
-  
+
+<script setup lang="ts">
+import {ref, onMounted} from "vue";
+import veducationLogo from "../assets/VEDUCATION (1).png"
+import profileImage from "../assets/Profile_Image.jpg"
+
+const dropDownVisible = ref(false);
+const dropDownVisibleMore = ref(false);
+
+const toggleDropDown = (dropDownId: string) => {
+  if(dropDownId === "profileMenu"){
+    dropDownVisible.value = !dropDownVisible.value;
+  } else if (dropDownId === "moreMenu") {
+    dropDownVisibleMore.value = !dropDownVisibleMore.value;
+  }
+}
+
+onMounted(() => {
+document.addEventListener('click', (event) => {
+  const userMenuButton = document.getElementById('user-menu-button');
+  const userDropDown = document.getElementById('user-dropdown');
+  const subMenuButton = document.getElementById('submenu-button');
+  const subMenuDropDown = document.getElementById('submenu-dropdown');
+
+  if (userMenuButton && userDropDown && !userMenuButton.contains(event.target as Node) && !userDropDown.contains(event.target as Node)) {
+    dropDownVisible.value = false;
+    }
+  if (subMenuButton && subMenuDropDown && !subMenuButton.contains(event.target as Node) && !subMenuDropDown.contains(event.target as Node)) {
+    dropDownVisibleMore.value = false;
+    }
+  });
+});
+</script>

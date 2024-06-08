@@ -58,7 +58,7 @@ const fetchBooks = async () => {
 };
 
 const getImageUrl = (imagePath: string) => {
-  return `http://localhost:8000/${imagePath}`;
+  return `${import.meta.env.VITE_BACKEND_BASE_URL}/${imagePath}`;
 };
 
 const truncateDescription = (description: string, maxLength = 100) => {
