@@ -11,8 +11,3 @@ release:
     - cd ../backend            # Navigate back to the backend directory
     - python manage.py migrate  # Run database migrations for Django backend
     - python manage.py collectstatic --noinput  # Collect static files for Django
-
-formation:
-  web:
-    quantity: 1
-    size: free
