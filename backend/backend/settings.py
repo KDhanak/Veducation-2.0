@@ -121,7 +121,14 @@ CORS_ALLOWED_ORIGINS = [
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'veducation2',        
+        'USER': 'kishan',             
+        'PASSWORD': '0CTbUtXG5h0XuzLUkkIDADeuqNQSDhlb',         
+        'HOST': 'dpg-cs60hdjtq21c73dnpsqg-a',             
+        'PORT': '5432',                      
+    }
 }
 
 # Password validation
