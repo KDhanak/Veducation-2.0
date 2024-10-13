@@ -107,8 +107,8 @@
 
 <script setup lang="ts">
 import {ref, onMounted} from "vue";
-import veducationLogo from "../assets/VEDUCATION (1).png"
-import profileImage from "../assets/Profile_Image.jpg"
+import veducationLogo from "../assets/VEDUCATION.png"
+import profileImage from "../assets/me.jpg"
 
 const dropDownVisible = ref(false);
 const dropDownVisibleMore = ref(false);

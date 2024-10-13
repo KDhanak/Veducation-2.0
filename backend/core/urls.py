@@ -1,14 +1,11 @@
 from django.urls import path, include
 from . import views
-from django.conf import settings
-from dj_rest_auth.views import LoginView, LogoutView
+from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
-    path("api/publication", views.getData),
-    path("authmanagement/", include("dj_rest_auth.urls")),
-    path("authmanagement/registration",
-         include("dj_rest_auth.registration.urls")),
-    path("accounts/", include("allauth.urls")),
-    path('authmanagement/login/', LoginView.as_view(), name='rest_login'),
-    path('authmanagement/logout/', LogoutView.as_view(), name='rest_logout'),
+    path("api/publication", views.GetPublication.as_view(), name="publication_view"),
+    path("register",views.RegisterAPI.as_view(), name="register_view"),
+    # path("api/token/", views.CustomTokenObtainPairView.as_view(), name="token_obtain_pair"),
+    # path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # path("api/csrf-token", views.get_csrf_token, name='csrf-tpken')
 ]

@@ -1,13 +1,32 @@
-FROM python:3.11.4
-
+# Base image
+FROM python:3.11.4 AS base
 WORKDIR /app
 
-COPY requirements.txt ./
+# Install system dependencies (if needed, like libpq-dev for PostgreSQL)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    && apt-get clean
 
-RUN pip install -r requirements.txt
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy application code
 COPY . .
 
+# Development stage
+FROM base AS development
+ENV DJANGO_ENV=development
 EXPOSE 8000
-
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+# Production stage
+FROM base AS production
+ENV DJANGO_ENV=production
+# Install Gunicorn
+RUN pip install gunicorn
+# Collect static files
+RUN python manage.py collectstatic --noinput
+EXPOSE 8000
+CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]

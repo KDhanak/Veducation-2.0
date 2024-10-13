@@ -1,13 +1,26 @@
-FROM node:hydrogen-alpine3.19
-
+# Base stage
+FROM node:18-alpine AS base
 WORKDIR /app
 
+# Install dependencies
 COPY package*.json ./
+RUN npm install --legacy-peer-deps
 
-RUN npm install
-
+# Development stage
+FROM base AS development
 COPY . .
-
 EXPOSE 3000
-
 CMD ["npm", "run", "dev"]
+
+# Production stage
+FROM base AS production
+COPY . .
+RUN npm run build
+
+# Serve the application using a lightweight web server
+FROM nginx:alpine AS final
+COPY --from=production /app/dist /usr/share/nginx/html
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

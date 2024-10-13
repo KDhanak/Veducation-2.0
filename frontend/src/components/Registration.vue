@@ -33,38 +33,43 @@
                     </a>
 
                     <div class="mt-8">
-                        <form>
+                        <form @submit.prevent="handleSubmit()">
                             <div class="mt-4">
                                 <div>
                                     <label for="username" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Username</label>
-                                    <input type="text" v-model="username" name="username" id="fname" placeholder="Create a username" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input type="text" v-model="form.username" name="username" id="username" placeholder="Create a username" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <div v-if="validationErrors.username" class="text-red-500 text-xs">{{ validationErrors.username }}</div>
                                 </div>
                             </div>
                             <div class="mt-4">
                                 <div>
                                     <label for="first_name" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">First Name</label>
-                                    <input type="text" v-model="first_name" name="first_name" id="fname" placeholder="First Name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input type="text" v-model="form.first_name" name="first_name" id="fname" placeholder="First Name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <div v-if="validationErrors.first_name" class="text-red-500 text-xs">{{ validationErrors.first_name }}</div>
                                 </div>
                             </div>
                             
                             <div class="mt-4">
                                 <div>
                                     <label for="last_name" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Last Name</label>
-                                    <input type="text" v-model="last_name" name="last_name" id="lname" placeholder="Last Name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input type="text" v-model="form.last_name" name="last_name" id="lname" placeholder="Last Name" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <div v-if="validationErrors.last_name" class="text-red-500 text-xs">{{ validationErrors.last_name }}</div>
                                 </div>
                             </div>
 
                             <div class="mt-4">
                                 <div>
                                     <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email Address</label>
-                                    <input type="email" v-model="email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input type="text" v-model="form.email" name="email" id="email" placeholder="example@example.com" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <div v-if="validationErrors.email" class="text-red-500 text-xs">{{ validationErrors.email }}</div>
                                 </div>
                             </div>
 
                             <div class="mt-4">
                                 <div>
                                     <label for="phone_number" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Phone Number</label>
-                                    <input type="tel" v-model="phone_number" name="phone_number" id="phone_number" placeholder="Phone Number" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <input type="tel" v-model="form.phone_number" name="phone_number" id="phone_number" placeholder="Phone Number" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                    <div v-if="validationErrors.phone_number" class="text-red-500 text-xs">{{ validationErrors.phone_number }}</div>
                                 </div>
                             </div>
 
@@ -73,7 +78,8 @@
                                     <label for="password" class="text-sm text-gray-600 dark:text-gray-200">Password</label>
                                 </div>
 
-                                <input type="password" v-model="password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <input type="password" v-model="form.password" name="password" id="password" placeholder="Your Password" class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <div v-if="validationErrors.password" class="text-red-500 text-xs">{{ validationErrors.password }}</div>
                             </div>
 
                             <div class="mt-4">
@@ -86,6 +92,15 @@
                         </form>
 
                         <p class="mt-6 text-sm text-center text-gray-400">Already have an account? <a :href ="loginUrl" target="_blank" class="text-blue-500 focus:outline-none focus:underline hover:underline cursor-pointer">Sign in</a>.</p>
+                        <div v-if="displayMessage" :class="warningTheme" class="flex items-center p-4 mb-4 text-sm border rounded-lg bg-red-50 dark:bg-gray-800" role="alert">
+                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                            </svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium"></span> {{ displayMessage }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,45 +109,137 @@
 </template>
     
 <script lang="ts" setup>
-import {ref, onMounted, computed} from "vue";
+import {ref, computed} from "vue";
 import axios from "axios";
 
 const loginUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/login`);
+const apiUrl = computed(() => `${import.meta.env.VITE_BACKEND_BASE_URL}/core/register`);
 
+type FormFields = {
+    username: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: string;
+    password: string;
+}
 
-const username = ref('');
-const first_name = ref('');
-const last_name = ref('');
-const email = ref('');
-const phone_number = ref('');
-const password = ref('');
+    const form = ref<FormFields>({
+        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        password: "",
+    });
 
-const register = async () => {
-    try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/authmanagement/registration`, {
-            username: username.value,
-            first_name: first_name.value,
-            last_name: last_name.value,
-            email: email.value,
-            phone_number: phone_number.value,
-            password: password.value,
-        });
-        console.log("Registration Successful:", response.data);
-    } catch (error) {
-        console.error("Error during registration", error.repsonse.data)
+    const validationErrors = ref({
+        username: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        password: "",
+
+    })
+
+    const validateField = (field: string, value:string) => {
+        switch (field) {
+            case "username":
+                validationErrors.value.username = value.length < 3 ? "Username must be at least 3 characters long." : "";
+                break;
+            case "email":
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                validationErrors.value.email = !emailPattern.test(value) ? "Enter a valid email address." : "";
+                break;
+            case "password":
+                validationErrors.value.password = value.length <= 8 ? "Password must be at least 6 characters long." : "";
+                break;
+                case "first_name":
+            case "last_name":
+                const namePattern = /^[A-Za-z]+$/;
+                validationErrors.value[field] = !namePattern.test(value) ? "Only alphabets are allowed" : "";
+                break;
+            case "phone_number":
+                const numberPattern = /^(?:(?:\+91|91|0)[-\s]?)?[6-9]\d{9}$/;
+                validationErrors.value.phone_number = !numberPattern.test(value) ? "Please enter a valid phone number" : "";
+        }
     }
 
-    return {
-        username, first_name, last_name, email, phone_number, password
+    const handleSubmit = () => {
+        Object.keys(form.value).forEach((key) => {
+        validateField(key, String(form.value[key as keyof typeof form.value]));
+        });
+
+        if (Object.values(validationErrors.value).every((error) => error === "")) {
+            registerUser();
+        } else {
+            errorRef.value = "Please correct the errors in the form";
+        } 
+    };
+
+    const errorRef = ref<string | null> (null);
+    const successMessage = ref<string | null> (null);
+    const warningThemeValue = ref<boolean | null> (null);
+
+    const registerUser = async () => {
+        errorRef.value = null;
+        successMessage.value = null;
+
+        try{
+            const response = await axios.post(apiUrl.value, form.value);
+            if (response.status === 201) {
+                successMessage.value = "User registered successfully!";
+                Object.keys(form.value).forEach((key) => {
+                    form.value[key as keyof typeof form.value] = "";
+                });
+            }
+        } catch (err) {
+            if (axios.isAxiosError(err) && err.response) {
+                const usernameError = err.response.data.username ? err.response.data.username[0] : null; 
+                const emailError = err.response.data.email ? err.response.data.email[0] : null;
+    
+                if (usernameError && emailError) {
+                    errorRef.value = "The username and email are already registered.";
+                } else {
+                    errorRef.value = usernameError || emailError || "Unknown error";
+                }
+                console.log(errorRef.value);
+            } else {
+                errorRef.value = "An unexpected error occurred";
+            }
+        }
+
+        return {
+        form, error:errorRef, registerUser,
     };
 };
 
+const displayMessage = computed(() => {
+    if(errorRef.value) {
+        warningThemeValue.value = false
+        return typeof errorRef.value === "string" ? errorRef.value : "An expected error occurred";
+    }
+    else {
+        warningThemeValue.value = true
+        return successMessage.value;
+    }
+})
 
+const warningTheme = computed(() => {
+    if (warningThemeValue.value) {
+        console.log(warningThemeValue.value)
+        return "text-green-800 border-green-300 bg-green-50 dark:text-green-400 dark:border-green-800";
+    } else {
+        console.log(warningThemeValue.value)
+        return "text-red-800 border-red-300 bg-red-50 dark:text-red-400 dark:border-red-800";
+    }
+})
 
 </script>
 
 <style scoped>
 #imageClass {
-    background-image: url("../assets/9744893-ram-mandir-krishna-image.jpg");
+    background-image: url("../assets/rammandir-1024x683.jpg");
 }
 </style>

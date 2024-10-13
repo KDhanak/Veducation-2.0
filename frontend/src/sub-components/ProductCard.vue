@@ -45,7 +45,16 @@
 import {ref, onMounted} from "vue";
 import apiClient from "../plugins/axios";
 
-const books = ref([]);
+interface Publication {
+    id: number;
+    publication_image: string;
+    publication_name: string;
+    publication_description: string;
+    publication_price: number;
+    publication_price_tag: string;
+}
+
+const books = ref<Publication[]>([]);
 
 const fetchBooks = async () => {
     try{

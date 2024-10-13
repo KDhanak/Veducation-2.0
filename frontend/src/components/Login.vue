@@ -66,13 +66,13 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, onMounted, computed} from "vue";
+import {computed} from "vue";
 
 const registerUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/register`);
 </script>
 
 <style scoped>
 #imageClass {
-  background-image: url("../assets/9744893-ram-mandir-krishna-image.jpg");
+  background-image: url("../assets/rammandir-1024x683.jpg");
 }
 </style>

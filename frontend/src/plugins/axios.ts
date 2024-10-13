@@ -1,31 +1,29 @@
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosInstance } from "axios";
 
-const apiClient = axios.create({
+const apiClient: AxiosInstance = axios.create({
     baseURL: `${import.meta.env.VITE_BACKEND_BASE_URL}/core`,
     withCredentials: false,
     headers: {
         Accept: "application/json",
-        "Content-Type": "application",
+        "Content-Type": "application/json", 
     },
-    timout: 10000,
+    timeout: 10000, 
 });
 
 apiClient.interceptors.request.use(
-    (config) => {
+    (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
         return config;
     },
-
-    (error) => {
+    (error: any): Promise<any> => {
         return Promise.reject(error);
     }
 );
 
 apiClient.interceptors.response.use(
-    (response) => {
+    (response: AxiosResponse): AxiosResponse => {
         return response;
     },
-
-    (error) => {
+    (error: any): Promise<any> => {
         return Promise.reject(error);
     }
 );

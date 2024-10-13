@@ -1,9 +1,9 @@
-version: '3.8'
 services:
   backend:
     build:
       context: ./backend
       dockerfile: dockerfile
+      target: development
     command: >
       sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes: 
@@ -19,12 +19,16 @@ services:
     build:
       context: ./frontend
       dockerfile: dockerfile
+      target: development
     command: > 
       sh -c "npm run dev"
     volumes: 
       - ./frontend:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
+    env_file:
+      - ./frontend/.env
     depends_on:
     - backend
 
