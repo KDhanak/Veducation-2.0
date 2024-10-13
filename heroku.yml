@@ -1,9 +1,18 @@
 build:
   docker:
-    web: ./frontend/dockerfile
-    backend: ./backend/dockerfile
+    web: ./frontend/dockerfile  # Ensure this matches your actual Dockerfile name
+    backend: ./backend/dockerfile # Ensure this matches your actual Dockerfile name
 
 release:
   command:
-    - npm install
-    - npm run build
+    - cd frontend              # Navigate to the frontend directory
+    - npm install              # Install dependencies for frontend
+    - npm run build            # Build the frontend app
+    - cd ../backend            # Navigate back to the backend directory
+    - python manage.py migrate  # Run database migrations for Django backend
+    - python manage.py collectstatic --noinput  # Collect static files for Django
+
+formation:
+  web:
+    quantity: 1
+    size: free
