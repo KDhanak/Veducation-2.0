@@ -2,8 +2,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-      target: production
+      dockerfile: dockerfile.prod
     command: >
       sh -c "python manage.py migrate && gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     environment:
@@ -19,8 +18,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
-      target: production
+      dockerfile: dockerfile.prod
     ports:
       - "80:80"
     depends_on:
