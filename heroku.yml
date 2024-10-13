@@ -1,0 +1,9 @@
+build:
+  docker:
+    web: ./frontend/dockerfile
+    backend: ./backend/dockerfile
+
+release:
+  command:
+    - npm install
+    - npm run build
