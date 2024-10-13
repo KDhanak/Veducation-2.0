@@ -3,19 +3,22 @@ FROM node:18-alpine AS base
 WORKDIR /app
 
 # Install dependencies
-COPY package*.json ./
+COPY frontend/package*.json ./
 RUN npm install --legacy-peer-deps
 
 # Copy application code
-COPY . .
+COPY frontend/ .
 
-# Production stage
-FROM base AS production
+# Build the application
 RUN npm run build
 
-# Serve the application using Nginx
-FROM nginx:alpine AS final
-COPY --from=production /app/dist /usr/share/nginx/html
+# Production stage: Serve the application using Nginx
+FROM nginx:stable-alpine AS final
+
+# Copy built files to Nginx
+COPY --from=base /app/dist /usr/share/nginx/html
+
+# Expose port 80 for Nginx
 EXPOSE 80
 
 # Start Nginx
