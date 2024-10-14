@@ -28,7 +28,7 @@ MEDIA_URL = ''
 SECRET_KEY = os.environ.get('SECRET_KEY', '5y+_8k#h(n309qk-1s$p5!$o(a5s5fr53*6kfr&ambrbywm7v+3')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_ENV') != 'production'
+DEBUG = False
 
 ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'localhost', '127.0.0.1']
 
