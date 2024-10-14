@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '5y+_8k#h(n309qk-1s$p5!$o(a5s5fr53*6kf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_ENV') != 'production'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'localhost', '127.0.0.1']
 
 if os.environ.get('DJANGO_ENV') == 'production':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -107,7 +107,7 @@ SIMPLE_JWT = {
 WSGI_APPLICATION = "backend.wsgi.application"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", "http://localhost:8000",
+    "https://veducation-2-0.onrender.com",
 ]
 
 # Database
@@ -123,11 +123,11 @@ CORS_ALLOWED_ORIGINS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'veducation2',        
-        'USER': 'kishan',             
-        'PASSWORD': '0CTbUtXG5h0XuzLUkkIDADeuqNQSDhlb',         
-        'HOST': 'dpg-cs60hdjtq21c73dnpsqg-a',             
-        'PORT': '5432',                      
+        'NAME': os.environ.get('DB_NAME'),        
+        'USER': os.environ.get('DB_USER'),               
+        'PASSWORD': os.environ.get('DB_PASSWORD'),         
+        'HOST': os.environ.get('HOST'),             
+        'PORT': os.environ.get('PORT'),                      
     }
 }
 
