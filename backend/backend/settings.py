@@ -34,8 +34,11 @@ ALLOWED_HOSTS = ['veducation-backend.onrender.com', 'veducation-2-0.onrender.com
 
 CSRF_TRUSTED_ORIGINS = ['https://veducation-backend.onrender.com', 'https://veducation-2-0.onrender.com/']
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Application definition
 
