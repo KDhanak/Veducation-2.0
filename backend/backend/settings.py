@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['veducation-backend.onrender.com', 'veducation-2-0.onrender.com
 
 CSRF_TRUSTED_ORIGINS = ['https://veducation-backend.onrender.com', 'https://veducation-2-0.onrender.com/']
 
-if os.environ.get('DJANGO_ENV') == 'production':
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 
@@ -120,17 +120,6 @@ CORS_ALLOWED_ORIGINS = [
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DB_NAME'),        
-#         'USER': os.environ.get('DB_USER'),               
-#         'PASSWORD': os.environ.get('DB_PASSWORD'),         
-#         'HOST': os.environ.get('HOST'),             
-#         'PORT': 5432,                      
-#     }
-# }
-
 DATABASES = {
     'default': dj_database_url.parse(
         'postgresql://kishan:0CTbUtXG5h0XuzLUkkIDADeuqNQSDhlb@dpg-cs60hdjtq21c73dnpsqg-a/veducation2'
@@ -170,8 +159,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
