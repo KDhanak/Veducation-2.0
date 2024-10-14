@@ -35,8 +35,6 @@ ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'localhost', '127.0.0.1']
 if os.environ.get('DJANGO_ENV') == 'production':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -127,7 +125,7 @@ DATABASES = {
         'USER': os.environ.get('DB_USER'),               
         'PASSWORD': os.environ.get('DB_PASSWORD'),         
         'HOST': os.environ.get('HOST'),             
-        'PORT': os.environ.get('PORT'),                      
+        'PORT': 5432,                      
     }
 }
 
