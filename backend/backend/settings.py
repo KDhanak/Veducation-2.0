@@ -118,15 +118,21 @@ CORS_ALLOWED_ORIGINS = [
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DB_NAME'),        
+#         'USER': os.environ.get('DB_USER'),               
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),         
+#         'HOST': os.environ.get('HOST'),             
+#         'PORT': 5432,                      
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),        
-        'USER': os.environ.get('DB_USER'),               
-        'PASSWORD': os.environ.get('DB_PASSWORD'),         
-        'HOST': os.environ.get('HOST'),             
-        'PORT': 5432,                      
-    }
+    'default': dj_database_url.parse(
+        'postgresql://kishan:0CTbUtXG5h0XuzLUkkIDADeuqNQSDhlb@dpg-cs60hdjtq21c73dnpsqg-a/veducation2'
+    )
 }
 
 # Password validation
