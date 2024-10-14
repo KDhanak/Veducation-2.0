@@ -30,7 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '5y+_8k#h(n309qk-1s$p5!$o(a5s5fr53*6kf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['veducation-backend.onrender.com', 'veducation-2-0.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['veducation-backend.onrender.com', 'veducation-2-0.onrender.com']
+
+CSRF_TRUSTED_ORIGINS = ['https://veducation-backend.onrender.com', 'https://veducation-2-0.onrender.com/']
 
 if os.environ.get('DJANGO_ENV') == 'production':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
