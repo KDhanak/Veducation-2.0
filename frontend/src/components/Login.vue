@@ -69,7 +69,6 @@
 import {computed} from "vue";
 
 const registerUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/register`);
-console.log(computed(() => `${import.meta.env.VITE_BASE_URL}`));
 </script>
 
 <style scoped>

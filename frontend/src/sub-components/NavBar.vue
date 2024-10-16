@@ -106,7 +106,7 @@
 
 
 <script setup lang="ts">
-import {ref, onMounted} from "vue";
+import {ref, onMounted, computed} from "vue";
 import veducationLogo from "../assets/VEDUCATION.png"
 import profileImage from "../assets/me.jpg"
 
@@ -120,6 +120,8 @@ const toggleDropDown = (dropDownId: string) => {
     dropDownVisibleMore.value = !dropDownVisibleMore.value;
   }
 }
+
+console.log(computed(() => `${import.meta.env.VITE_BASE_URL}`));
 
 onMounted(() => {
 document.addEventListener('click', (event) => {
