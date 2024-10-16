@@ -22,5 +22,7 @@ ENV DJANGO_ENV=production
 RUN pip install gunicorn
 # Collect static files
 RUN python manage.py collectstatic --noinput
+#Install the PostgreSQL client
+RUN apt-get update && apt-get install -y postgresql-client
 EXPOSE 8000
 CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
