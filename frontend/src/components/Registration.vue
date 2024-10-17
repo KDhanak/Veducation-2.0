@@ -113,7 +113,7 @@ import {ref, computed} from "vue";
 import axios from "axios";
 
 const loginUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/login`);
-const apiUrl = computed(() => `${import.meta.env.VITE_BACKEND_BASE_URL}/core/register`);
+const apiUrl = computed(() => `${import.meta.env.VITE_BACKEND_BASE_URL}/core/register/`);
 
 type FormFields = {
     username: string;
