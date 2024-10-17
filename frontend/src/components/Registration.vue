@@ -155,7 +155,7 @@ type FormFields = {
             case "password":
                 validationErrors.value.password = value.length <= 8 ? "Password must be at least 6 characters long." : "";
                 break;
-                case "first_name":
+            case "first_name":
             case "last_name":
                 const namePattern = /^[A-Za-z]+$/;
                 validationErrors.value[field] = !namePattern.test(value) ? "Only alphabets are allowed" : "";
@@ -204,7 +204,7 @@ type FormFields = {
                 } else {
                     errorRef.value = usernameError || emailError || "Unknown error";
                 }
-                console.log(errorRef.value);
+                console.log("Line 207 in Registration",errorRef.value);
             } else {
                 errorRef.value = "An unexpected error occurred";
             }
