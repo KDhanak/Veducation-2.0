@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,14 +26,14 @@ MEDIA_URL = ''
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '5y+_8k#h(n309qk-1s$p5!$o(a5s5fr53*6kfr&ambrbywm7v+3')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['veducation-backend.onrender.com', 'veducation-2-0.onrender.com']
+ALLOWED_HOSTS = ['veducation-backend.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://veducation-backend.onrender.com', 'https://veducation-2-0.onrender.com/']
+CSRF_TRUSTED_ORIGINS = ['https://veducation-backend.onrender.com']
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -125,9 +126,7 @@ CORS_ALLOWED_ORIGINS = [
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://kishan:0CTbUtXG5h0XuzLUkkIDADeuqNQSDhlb@dpg-cs60hdjtq21c73dnpsqg-a/veducation2'
-    )
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
 
 # Password validation
