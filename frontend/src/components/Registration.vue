@@ -204,7 +204,6 @@ type FormFields = {
                 } else {
                     errorRef.value = usernameError || emailError || "Unknown error";
                 }
-                console.log("Line 207 in Registration",errorRef.value);
             } else {
                 errorRef.value = "An unexpected error occurred";
             }
@@ -228,10 +227,8 @@ const displayMessage = computed(() => {
 
 const warningTheme = computed(() => {
     if (warningThemeValue.value) {
-        console.log(warningThemeValue.value)
         return "text-green-800 border-green-300 bg-green-50 dark:text-green-400 dark:border-green-800";
     } else {
-        console.log(warningThemeValue.value)
         return "text-red-800 border-red-300 bg-red-50 dark:text-red-400 dark:border-red-800";
     }
 })
