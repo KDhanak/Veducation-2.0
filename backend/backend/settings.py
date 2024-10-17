@@ -31,9 +31,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['veducation-2-0.onrender.com']
+ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'https://veducation-2-0.vercel.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://veducation-2-0.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://veducation-2-0.onrender.com', 'https://veducation-2-0.vercel.app']
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
