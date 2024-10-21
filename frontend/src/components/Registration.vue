@@ -144,9 +144,16 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import axios from "axios";
+import apiClient from "../plugins/axios";
+import Cookies from "js-cookie";
+import { useRouter } from "vue-router";
 
 const loginUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/login`);
-const apiUrl = computed(() => `${import.meta.env.VITE_BACKEND_BASE_URL}/core/register`);
+const router = useRouter();
+
+const errorRef = ref<string | null>(null);
+const successMessage = ref<string | null>(null);
+const warningThemeValue = ref<boolean | null>(null);
 
 type FormFields = {
     first_name: string;
@@ -181,7 +188,7 @@ const validateField = (field: string, value: string) => {
             validationErrors.value.email = !emailPattern.test(value) ? "Enter a valid email address." : "";
             break;
         case "password":
-            validationErrors.value.password = value.length <= 8 ? "Password must be at least 6 characters long." : "";
+            validationErrors.value.password = value.length <= 8 ? "Password must be at least 8 characters long." : "";
             break;
         case "first_name":
         case "last_name":
@@ -206,24 +213,27 @@ const handleSubmit = () => {
     }
 };
 
-const errorRef = ref<string | null>(null);
-const successMessage = ref<string | null>(null);
-const warningThemeValue = ref<boolean | null>(null);
-
 const registerUser = async () => {
     errorRef.value = null;
     successMessage.value = null;
 
     try {
-        const response = await axios.post(apiUrl.value, form.value);
+        const response = await apiClient.post('/api/register', form.value);
         if (response.status === 201) {
+            Cookies.set("access_token", response.data.access, { expires: 0.003, secure: true });
+            Cookies.set("refresh_token", response.data.refresh, { expires: 7, secure: true }); 
+            
             successMessage.value = "User registered successfully!";
             Object.keys(form.value).forEach((key) => {
                 form.value[key as keyof typeof form.value] = "";
             });
+
+            router.push({name:"Home"})
+
         }
     } catch (err) {
         if (axios.isAxiosError(err) && err.response) {
+            console.log(err.response);
             const emailError = err.response.data.email ? err.response.data.email[0] : null;
 
             if (emailError) {
@@ -231,10 +241,11 @@ const registerUser = async () => {
             } else {
                 errorRef.value = emailError || "Unknown error";
             }
-            console.log(errorRef.value);
         } else {
             errorRef.value = "An unexpected error occurred";
         }
+        console.log(errorRef.value);
+        router.push({name:"Home"})
     }
 
     return {
@@ -255,10 +266,8 @@ const displayMessage = computed(() => {
 
 const warningTheme = computed(() => {
     if (warningThemeValue.value) {
-        console.log(warningThemeValue.value)
         return "text-green-800 border-green-300 bg-green-50 dark:text-green-400 dark:border-green-800";
     } else {
-        console.log(warningThemeValue.value)
         return "text-red-800 border-red-300 bg-red-50 dark:text-red-400 dark:border-red-800";
     }
 })

@@ -2,7 +2,7 @@
     <article class="p-10 flex flex-wrap justify-evenly">
         <div v-for="book in books" :key="book.id" class="mb-7 relative grid w-172 bg-transparent border border-white rounded-lg shadow">
             <a href="#" class="flex flex-col items-center rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 bg-transparent dark:hover:bg-gray-700">
-                <img class="object-cover w-full rounded-t-lg md:h-85 md:w-64 md:rounded-none md:rounded-s-lg" :src="getImageUrl(book.publication_image)" alt="">
+                <img class="object-cover w-full rounded-t-lg lg:h-85 lg:w-64 md:rounded-none md:rounded-s-lg" :src="getImageUrl(book.publication_image)" alt="">
                 <div class="flex flex-col justify-between p-4 leading-normal">
                     <h5 class=" absolute top-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ book.publication_name }}</h5>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ truncateDescription(book.publication_description) }}</p>
