@@ -35,6 +35,10 @@ ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'veducation-2-0.vercel.app']
 
 CSRF_TRUSTED_ORIGINS = ['https://veducation-2-0.onrender.com', 'https://veducation-2-0.vercel.app']
 
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+
+CORS_ALLOW_CREDENTIALS = True
+
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
@@ -112,8 +116,6 @@ SIMPLE_JWT = {
 AUTH_USER_MODEL = 'core.Account'
 
 WSGI_APPLICATION = "backend.wsgi.application"
-
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
