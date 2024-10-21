@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import Cookies from "js-cookie";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -21,6 +22,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
     routes,
     history: createWebHistory(),
+});
+
+router.beforeEach((to, from, next) => {
+    const accessToken = Cookies.get("access_token");
+
+    if (to.meta.requiresAuth && !accessToken) {
+        next({name: "Login"});
+    } else {
+        next();
+    }
 });
 
 export default router;
