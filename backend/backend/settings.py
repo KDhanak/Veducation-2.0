@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['veducation-2-0.onrender.com', 'veducation-2-0.vercel.app']
 
 CSRF_TRUSTED_ORIGINS = ['https://veducation-2-0.onrender.com', 'https://veducation-2-0.vercel.app']
 
-CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+CORS_ALLOWED_ORIGINS = ['https://veducation-2-0.onrender.com','https://veducation-2-0.vercel.app']
 
 CORS_ALLOW_CREDENTIALS = True
 
