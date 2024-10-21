@@ -24,7 +24,7 @@ const router = createRouter({
     history: createWebHistory(),
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
     const accessToken = Cookies.get("access_token");
 
     if (to.meta.requiresAuth && !accessToken) {

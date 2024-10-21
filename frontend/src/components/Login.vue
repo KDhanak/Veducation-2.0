@@ -106,7 +106,6 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted } from "vue";
-import axios from "axios";
 import apiClient from "../plugins/axios";
 import isTokenExpired from "../plugins/tokens";
 import Cookies from 'js-cookie';

@@ -173,11 +173,16 @@ import Cookies from "js-cookie";
 import apiClient from "../plugins/axios";
 import { computed } from "vue";
 
+interface User {
+	first_name: string;
+	email: string;
+}
+
 const dropDownVisible = ref(false);
 const dropDownVisibleMore = ref(false);
 const router = useRouter();
-const user = ref(null);
-const error = ref(null);
+const user = ref<User | null>(null);
+const error = ref<string | null>(null);
 const registerUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/register`);
 const loginUrl = computed(() => `${import.meta.env.VITE_BASE_URL}/login`);
 
